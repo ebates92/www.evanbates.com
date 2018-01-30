@@ -1,0 +1,91 @@
+html {
+    box-sizing: border-box;
+    font-family: 'Questrial', sans-serif;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Questrial', sans-serif;
+    height: 100vh;
+    padding: .75vh;
+}
+
+/* HEADER */
+
+#header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+#name {
+    font-size: 6vh;
+    padding: 0;
+}
+
+#location, #contact {
+    font-size: 1.07vh;
+}
+
+/* FOR ALL SECTIONS */
+
+.section {
+    font-size: 2.25vh;
+    font-weight: 700;
+    padding: .75vh;
+    padding-top: 1.07vh;
+    padding-bottom: 0;
+}
+
+/* SKILLS */
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0 1.95vh;
+    padding-top: .75vh;
+}
+
+.skill {
+    padding: .15vh;
+    font-size: 1.65vh;
+    display: inline-block;
+}
+
+/* EXPERIENCE */
+
+.experience_header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.role {
+    padding: .9vh;
+    padding-top: 1.07vh;
+    padding-left: 1.5vh;
+}
+
+.title, .duration {
+    font-size: 1.65vh;
+    display: inline-block;
+}
+
+.title {
+    font-weight: 700;
+}
+
+.duties {
+    font-size: 1.3vh;
+    padding-left: 1.5vh;
+}
+
+.bottom {
+    padding-bottom: 1.07vh;
+}

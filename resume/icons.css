@@ -1,0 +1,41 @@
+html {
+    box-sizing: border-box;
+    font-family: 'Questrial', sans-serif;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Questrial', sans-serif;
+    height: 100vh;
+    padding: .75vh;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    text-align: center;
+}
+
+.icon-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.icon-name {
+    font-size: 8px;
+    padding-bottom: 2px;
+}
+
+i {
+    padding-bottom: 8px;
+}
+
+.html {
+    text-align: center;
+}
+
