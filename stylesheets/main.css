@@ -152,7 +152,7 @@ i {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    background-color: rgba(255, 255, 255,.94);
+    background-color: rgba(255, 255, 255,1);
     padding: 1.75rem;
 }
 
@@ -184,7 +184,7 @@ i {
 
 #what-i-know {
     /* border-top: 4rem solid rgba(0,0,0,0); */
-    background-color: rgba(49,199,191,.94);
+    background-color: rgba(49,199,191,1);
 }
 
 #container {
@@ -219,7 +219,7 @@ i {
 /* PROJECTS */
 
 #projects {
-    background-color: rgba(255, 255, 255, 0.94);
+    background-color: rgba(255, 255, 255, 01);
     height: auto;
 }
 
@@ -236,6 +236,10 @@ i {
     text-align: center;
     align-content: center;
     justify-content: center;
+    background-color: grey;
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y;
 }
 
 .project-name {
@@ -258,30 +262,6 @@ i {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-}
-
-
-
-/* PROJECT SPECIFICS */
-
-#project-one {
-    background-color: grey;
-    background-image: url('../img/mother-edited-4.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: repeat-y;
-}
-
-#project-two {
-
-}
-
-#project-three {
-    background-color: grey;
-    background-image: url('../img/package-tracker-2.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: repeat-y;
 }
 
 

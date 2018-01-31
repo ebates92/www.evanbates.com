@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="stylesheets/main.css">
     <link rel="stylesheet" href="stylesheets/pop-up.css">
     <link rel="icon" href="img/e-block.png">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <title>Evan Bates</title>
 </head>
 <body>
@@ -95,77 +98,95 @@
         <div class='spacing'></div>
 
 
-
         <!-- PROJECTS -->
+
         <div id="projects">
             <div class='section-header'>Portfolio</div> 
+            <div id="projects-go-here"></div>
+
+        <script type="text/babel">
+
+            const projects = [
+                {
+                    name: 'mySitter',
+                    description: "The mySitter Web App connects parents with local babysitters through validated social media profiles and parent ratings.",
+                    stack_name: ["NodeJS", "JavaScript E6", "PostGreSQL", "Sequelize"],
+                    stack: ["nodejs", "javascript", "postgresql", "sequelize"],
+                    image: "img/mother-edited-4.jpg",
+                    video: ""
+                },
+                {
+                    name: 'Package Tracker',
+                    description: "The Package Tracker Web App allows individuals to submit tracking numbers and recieve real time updates on their package delivery status through Fedex or UPS.",
+                    stack_name: ["HTML5", "CSS3", "JavaScript E6", "jQuery"],
+                    stack: ["html5", "css3", "javascript", "jquery"],
+                    image: "img/package-tracker-2.jpg",
+                    video: ""
+                },
+                {
+                    name: 'Atlanta 30307',
+                    description: "Atlanta 30307 allows you to search through homes available in the 30307 zipcode",
+                    stack_name: ["HTML5", "CSS3", "JavaScript E6", "jQuery"],
+                    stack: ["html5", "css3", "javascript", "jquery"],
+                    image: "img/Atlanta-30307.jpg",
+                    video: ""
+                }
+            ]
+
+
+            const ProjectCard = (props) => {
+                let backgroundStyle = {backgroundImage: 'url(' + props.image + ')'}
+                return (                
+                    <div className="project" style={backgroundStyle} onClick={clicked}>
+                        <div className="project-name">{props.name}</div>
+                        <div className="project-description">{props.description}
+                        </div>
+                    </div>
+                )
+            };
+
+            const projectCards = projects.map ( project => {
+                return (<ProjectCard
+                    name = {project.name}
+                    description = {project.description}
+                    image = {project.image}
+                />)
+            })
+
+            ReactDOM.render(
+                projectCards,
+                document.getElementById('projects-go-here')
+            )
+
+            let clicked = () => {
+                console.log('you clicked me')
+            }
+
+        </script>
+
+
 
             <!-- PROJECT ONE -->
-            <div class="project" id="project-one">
-                <div class="project-name">mySitter</div>
-                <div class="project-description">The mySitter Web App connects parents with local babysitters through validated social media
-                    profiles and parent ratings.
-                </div>
-                <!-- <div class="project-stack">
-                    <div class="stack-title">Main stack used:</div>
-                    <div class='stack-used'>
-                        <div class='icon-container'>
-                            <div class='icon-name'>JavaScript ES6</div>
-                            <i class="devicon-javascript-plain"></i>
-                        </div>
-                        <div class='icon-container'>
-                            <div class='icon-name'>PostGreSQL</div>
-                            <i class="devicon-postgresql-plain"></i>
-                        </div>
-                        <div class='icon-container'>
-                            <div class='icon-name'>NodeJS</div>
-                            <i class="devicon-nodejs-plain"></i>
-                        </div>
-                        <div class='icon-container'>
-                            <div class='icon-name'>Sequelize</div>
-                            <i class="devicon-sequelize-plain"></i>
-                        </div>
-                    </div>
-                </div> -->
-                <div id="project-image-one"></div>
-            </div>
 
-            <!-- PROJECT TWO -->
-            <!-- <div class="project" id="project-two">
-                <div class="project-name">mySitter</div>
-                <div class="project-description">The mySitter Web App connects parents with local babysitters through validated social media
-                    profiles and parent ratings.
-                </div>
-                <div class="project-stack">
-                    <div class="stack-title">Main stack used:</div>
-                    <div class='stack-used'>
-                        <div class='icon-container'>
-                            <div class='icon-name'>JavaScript ES6</div>
-                            <i class="devicon-javascript-plain"></i>
-                        </div>
-                        <div class='icon-container'>
-                            <div class='icon-name'>PostGreSQL</div>
-                            <i class="devicon-postgresql-plain"></i>
-                        </div>
-                        <div class='icon-container'>
-                            <div class='icon-name'>NodeJS</div>
-                            <i class="devicon-nodejs-plain"></i>
-                        </div>
-                        <div class='icon-container'>
-                            <div class='icon-name'>Sequelize</div>
-                            <i class="devicon-sequelize-plain"></i>
-                        </div>
-                    </div>
-                </div>
-                <div id="project-image-two"></div>
-            </div> -->
             
             <!-- PROJECT THREE -->
-            <div class="project" id="project-three">
+            <!-- <div class="project" id="project-three">
                 <div class="project-name">Package Tracker</div>
                 <div class="project-description">The Package Tracker Web App allows individuals to submit tracking numbers and recieve real time updates
                     on their package delivery status through Fedex or UPS. 
                 </div>
+
+                <div id="project-image-three"></div>
+            </div> -->
+        <div id="contact"></div>
+    </div>
+    <div id='backgrounds'>
+        <div class='background_faded'></div>
+        <div class='background_faded'></div>
+        <div class='background_faded'></div>
+    </div>
+
+        <!-- SAVING TO USE LATER -->
                 <!-- <div class="project-stack">
                     <div class="stack-title">Main stack used:</div>
                     <div class='stack-used'>
@@ -187,16 +208,6 @@
                         </div>
                     </div>
                 </div> -->
-                <div id="project-image-three"></div>
-            </div>
-        <div id="contact"></div>
-    </div>
-    <div id='backgrounds'>
-        <div class='background_faded'></div>
-        <div class='background_faded'></div>
-        <div class='background_faded'></div>
-    </div>
 
-    <script src="scripts/main.js"></script>
 </body>
 </html>
