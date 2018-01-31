@@ -27,7 +27,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: repeat-y;
-    opacity: .6;
+    opacity: .9;
     height: 100vh;
     width:100vw;
 }
@@ -231,6 +231,11 @@ i {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.13);
     border-radius: 1rem;
     color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
 }
 
 .project-name {
@@ -272,7 +277,11 @@ i {
 }
 
 #project-three {
-
+    background-color: grey;
+    background-image: url('../img/package-tracker-2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y;
 }
 
 
