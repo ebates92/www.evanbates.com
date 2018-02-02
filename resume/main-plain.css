@@ -37,10 +37,11 @@ body {
 
 .section {
     font-size: 2.25vh;
-    font-weight: 700;
+    /* font-weight: 400; */
     padding: .75vh;
     padding-top: 1.07vh;
     padding-bottom: 0;
+    list-style-type: none;
 }
 
 /* SKILLS */
@@ -78,7 +79,7 @@ body {
 }
 
 .title {
-    font-weight: 700;
+    font-weight: 900;
 }
 
 .duties {
@@ -88,4 +89,20 @@ body {
 
 .bottom {
     padding-bottom: 1.07vh;
+}
+
+/* PROJECTS */
+
+.projects, .description, .stack  {
+    padding-left: 20px;
+}
+
+.project-name {
+    font-weight: 900;
+    font-size:1.4vh;
+
+}
+
+li:before {
+    content: "-   "
 }
