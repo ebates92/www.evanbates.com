@@ -100,9 +100,9 @@
 
         <!-- PROJECTS -->
 
-        <div id="projects">
-            <div class='section-header'>Portfolio</div> 
-            <div id="projects-go-here"></div>
+        <div id="projects"></div>
+            <!-- <div class='section-header'>Portfolio</div> 
+            <div id="projects-go-here"></div> -->
 
         <script type="text/babel">
 
@@ -133,11 +133,36 @@
                 }
             ]
 
+            class App extends React.Component {
+                render() {
+                    return (
+                        <div>
+                            <div className="section-header">Portfolio</div>
+                            <ProjectCards data={this.props.data}/>
+                        </div>
+                    )
+                }
+
+            }
+
+            const ProjectCards = (props) => {
+
+                const projectCards = props.data.map ( project => {
+                    return (<ProjectCard
+                        name = {project.name}
+                        description = {project.description}
+                        image = {project.image}
+                    />)
+                })
+
+                return projectCards
+
+            }
 
             const ProjectCard = (props) => {
                 let backgroundStyle = {backgroundImage: 'url(' + props.image + ')'}
                 return (                
-                    <div className="project" style={backgroundStyle} onClick={clicked}>
+                    <div className="project" style={backgroundStyle}>
                         <div className="project-name">{props.name}</div>
                         <div className="project-description">{props.description}
                         </div>
@@ -145,39 +170,16 @@
                 )
             };
 
-            const projectCards = projects.map ( project => {
-                return (<ProjectCard
-                    name = {project.name}
-                    description = {project.description}
-                    image = {project.image}
-                />)
-            })
-
             ReactDOM.render(
-                projectCards,
-                document.getElementById('projects-go-here')
-            )
+                <App
+                    data={projects}
+                />,
+                document.getElementById('projects')
+            );
 
-            let clicked = () => {
-                console.log('you clicked me')
-            }
 
         </script>
 
-
-
-            <!-- PROJECT ONE -->
-
-            
-            <!-- PROJECT THREE -->
-            <!-- <div class="project" id="project-three">
-                <div class="project-name">Package Tracker</div>
-                <div class="project-description">The Package Tracker Web App allows individuals to submit tracking numbers and recieve real time updates
-                    on their package delivery status through Fedex or UPS. 
-                </div>
-
-                <div id="project-image-three"></div>
-            </div> -->
         <div id="contact"></div>
     </div>
     <div id='backgrounds'>
