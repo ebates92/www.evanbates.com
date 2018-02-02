@@ -133,6 +133,8 @@
                 }
             ]
 
+            // PRIMARY APP THAT RENDERS THE PROJECTS AND CHECKS FOR CLICKS
+
             class App extends React.Component {
                 constructor (props) {
                     super(props);
@@ -143,8 +145,9 @@
 
                 render() {
                     let currentProject = null;
+                    // will check if a project has been clicked. If so, it will seek out the ProjectPopOut Component
                     if (this.state.currentProjectIndex >= 0) {
-                        currentProject = <h1>{projects[this.state.currentProjectIndex].name}</h1>
+                        currentProject = <ProjectPopOut data={this.props.data} currentProjectIndex= {this.state.currentProjectIndex}/>
                     }
 
                     return (
@@ -163,6 +166,8 @@
                 }
 
             }
+
+            // Main Page Project Components
 
             const ProjectCards = (props) => {
 
@@ -193,6 +198,26 @@
                 )
             };
 
+            // Pop-up Project Components
+
+            const ProjectPopOut = (props) => {
+                let backgroundStyle = {backgroundImage: 'url(' + props.data[props.currentProjectIndex].image + ')'}
+                return (
+                    <div className="pop-out-container">
+                        <div className="video-picture-window">
+                            <div className="holds-video-picture" style={backgroundStyle}></div>
+                            <div className='project-info'>
+                                IM ADDING CONTENT IN HERE SO THAT MAYBE IT WILL DO STUFF.
+                            </div>      
+                        </div>
+                        <div className="clickable picture-x">⨯</div>
+                        <div className="clickable scroll scroll-left">⟪</div>
+                        <div className="clickable scroll scroll-right">⟫</div>
+                    </div>
+                )
+            }
+
+
             ReactDOM.render(
                 <App
                     data={projects}
@@ -204,7 +229,7 @@
         </script>
 
         <div id="footer">
-            <div class='section-header'>Want to know more about me?</div>
+            <div class='section-header'>Want to know more?</div>
             <div class='social-media'>
                 <a href="https://www.facebook.com/evan.bates.503" class="nav-item onefoot" target='blank' id="facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
                 <a href="https://www.instagram.com/ebates92/" class="nav-item twofoot" target='blank' id="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>

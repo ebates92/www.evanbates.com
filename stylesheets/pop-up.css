@@ -1,6 +1,6 @@
 
-.picture-container {
-    position: absolute;
+.pop-out-container {
+    /* position: absolute; */
     display: grid;
     grid-template-columns: 10vw 80vw 10vw;
     grid-template-rows: 15vh 70vh 15vh;
@@ -19,12 +19,13 @@
     height: 100%;
   }
   
-  .picture-window {
-    position: fixed;
+  .video-picture-window {
+    /* position: fixed; */
     width: 80vw;
     height: auto;
     max-width: 850px;
     display: grid;
+    grid-template-rows: 4fr 1fr;
     justify-self: center;
     align-self: center;
     justify-content: center;
@@ -36,7 +37,7 @@
   .picture-x {
     width: auto;
     height: auto;
-    position: absolute;
+    /* position: absolute; */
     right: 2vw;
     top: 2vw;
     grid-column-start: 3;
@@ -74,7 +75,7 @@
     font-size: 2.5em;
   }
   
-  .popup-house-info {
+  .project-info {
     grid-column-start: 1;
     grid-row-start: 2;
     align-self: start;
@@ -86,4 +87,13 @@
     grid-template-columns: 3fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     border: .7vw solid white;
+  }
+
+  .holds-video-picture {
+    grid-row-start: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y;
+    width: 100%;
+    height: 100%
   }
