@@ -27,10 +27,10 @@
                 <div id="slogan"><em>Let's build something together!</em></div>
             </div>
             <div id="nav-social">
-                <a href="mailto:ebates92@gmail.com" class="nav-item onenav" id="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
-                <a href="https://github.com/ebates92" class="nav-item twonav" id="github"><i class="fa fa-github" aria-hidden="true"></i></a>
-                <a href="https://www.linkedin.com/in/evanbates92/" class="nav-item threenav" id="linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                <a href="img/evan_resume" class="nav-item fournav" id="resume"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
+                <a href="mailto:ebates92@gmail.com" class="nav-item onenav" target='blank' id="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+                <a href="https://github.com/ebates92" class="nav-item twonav" target='blank' id="github"><i class="fa fa-github" aria-hidden="true"></i></a>
+                <a href="https://www.linkedin.com/in/evanbates92/" class="nav-item threenav" target='blank' id="linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                <a href="img/Evan-Bates-Resume-Artistic.pdf" class="nav-item fournav" target='blank' id="resume"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
             </div>
         </div>
 
@@ -43,7 +43,7 @@
                 <div id="my-bio">I'm a full-stack web developer in Atlanta, GA. I joined the software community five years ago and fell in love with the fast-paced environment and daily challenges.</div>
                 <br>
                 <div id="my-bio">After mastering operations, I decided that I wanted a better fundamental understanding of how software works.  
-                        This inquiry led me to <a href="https://www.digitalcrafts.com/">Digital Crafts</a> - a four month coding immersive. I now hold a breath of leadership and programming skills 
+                        This inquiry led me to <a href="https://www.digitalcrafts.com/" target="blank">Digital Crafts</a> - a four month coding immersive. I now hold a breath of leadership and programming skills 
                         that help turn an idea from a concept into a tangible asset that adds value.</div>
             </div>
         <div class='spacing'></div>
@@ -134,24 +134,45 @@
             ]
 
             class App extends React.Component {
+                constructor (props) {
+                    super(props);
+                    this.state = {
+                        currentProjectIndex : -1,
+                    }
+                }
+
                 render() {
+                    let currentProject = null;
+                    if (this.state.currentProjectIndex >= 0) {
+                        currentProject = <h1>{projects[this.state.currentProjectIndex].name}</h1>
+                    }
+
                     return (
                         <div>
+                            {currentProject}
                             <div className="section-header">Portfolio</div>
-                            <ProjectCards data={this.props.data}/>
+                            <ProjectCards data={this.props.data} clickHandler={this.handleOnClick}/>
                         </div>
                     )
+                }
+
+                handleOnClick = (id) => {
+                    this.setState({
+                        currentProjectIndex: id,
+                    })
                 }
 
             }
 
             const ProjectCards = (props) => {
 
-                const projectCards = props.data.map ( project => {
+                const projectCards = props.data.map ( (project, index) => {
                     return (<ProjectCard
                         name = {project.name}
                         description = {project.description}
                         image = {project.image}
+                        id = {index}
+                        handleOnClick = {props.clickHandler}
                     />)
                 })
 
@@ -162,7 +183,9 @@
             const ProjectCard = (props) => {
                 let backgroundStyle = {backgroundImage: 'url(' + props.image + ')'}
                 return (                
-                    <div className="project" style={backgroundStyle}>
+                    <div className="project" style={backgroundStyle} onClick = {() => {
+                        props.handleOnClick(props.id);
+                    }}>
                         <div className="project-name">{props.name}</div>
                         <div className="project-description">{props.description}
                         </div>
@@ -180,12 +203,20 @@
 
         </script>
 
-        <div id="contact"></div>
+        <div id="footer">
+            <div class='section-header'>Want to know more about me?</div>
+            <div class='social-media'>
+                <a href="https://www.facebook.com/evan.bates.503" class="nav-item onefoot" target='blank' id="facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                <a href="https://www.instagram.com/ebates92/" class="nav-item twofoot" target='blank' id="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                 <!-- <a href="" class="nav-item threefoot" target='blank' id="blog"><i class="fa fa-wordpress" aria-hidden="true"></i></a>    -->
+            </div>
+        </div>
+        
     </div>
     <div id='backgrounds'>
         <div class='background_faded'></div>
         <div class='background_faded'></div>
-        <div class='background_faded'></div>
+        <!-- <div class='background_faded'></div> -->
     </div>
 
         <!-- SAVING TO USE LATER -->

@@ -27,6 +27,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: repeat-y;
+    background-attachment: fixed; 
     opacity: .9;
     height: 100vh;
     width:100vw;
@@ -221,12 +222,13 @@ i {
 #projects {
     background-color: rgba(255, 255, 255, 01);
     height: auto;
+    padding-bottom: 4rem;
 }
 
 .project {
     height: 25rem;
-    margin: 1rem;
-    margin-bottom: 2rem;
+    margin: 3rem;
+    margin-top: 2rem;
     padding: 1rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.13);
     border-radius: 1rem;
@@ -264,4 +266,19 @@ i {
     justify-content: space-around;
 }
 
+#footer {
+    background-color: rgba(49, 199, 191, 1)
+}
+
+.social-media {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    padding-left: 30vw;
+    padding-right: 30vw;
+    padding-bottom: 2rem;
+    padding-top: 1rem;
+    font-size: 3rem;
+}
 
