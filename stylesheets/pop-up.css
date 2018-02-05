@@ -1,38 +1,30 @@
+.root {
+  overflow: scroll;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
 
 .pop-out-container {
-    /* position: absolute; */
+    position: static;
     display: grid;
-    grid-template-columns: 10vw 80vw 10vw;
-    grid-template-rows: 15vh 70vh 15vh;
-    width: 100vw;
-    height: 100%;
-    top:0;
-    z-index: 1;
-    background-color: rgba(128, 128, 128, 0.774);
+    grid-template-columns: 1fr 9fr 1fr;
+    grid-template-rows: 1fr 9fr 1fr;
+    width: auto;
+    height: auto;
+    /* top:0; */
+    background-color: rgba(128, 128, 128, 1);
     justify-content: center;
     align-items: center;
   }
   
   .fixed {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+    overflow: hidden;
   }
-  
-  .video-picture-window {
-    /* position: fixed; */
-    width: 80vw;
-    height: auto;
-    max-width: 850px;
-    display: grid;
-    grid-template-rows: 4fr 1fr;
-    justify-self: center;
-    align-self: center;
-    justify-content: center;
-    align-items: center;
-    grid-column-start: 2;
-    grid-row-start: 2;
-  }
+
   
   .picture-x {
     width: auto;
@@ -42,7 +34,7 @@
     top: 2vw;
     grid-column-start: 3;
     grid-row-start: 1;
-    font-size: 5vw;
+    font-size: 8vw;
   }
   
   .scroll {
@@ -74,26 +66,97 @@
   .clickable:active {
     font-size: 2.5em;
   }
-  
-  .project-info {
-    grid-column-start: 1;
-    grid-row-start: 2;
-    align-self: start;
-    width: 100%;
-    height: 14vw;
-    max-height: 140px;
+
+  /* INFO FOR THE PROJECT BOX */
+
+  .video-picture-window {
+    /* position: fixed; */
     background-color: white;
+    width: auto;
+    height: auto;
+    max-width: 850px;
     display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    border: .7vw solid white;
+    grid-template-rows: auto auto auto auto auto;
+    justify-self: center;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    grid-column-start: 2;
+    grid-row-start: 2;
+    padding: 1rem;
   }
 
-  .holds-video-picture {
+  .application-name {
     grid-row-start: 1;
-    background-size: cover;
-    background-position: center;
-    background-repeat: repeat-y;
     width: 100%;
-    height: 100%
+    padding-bottom: .5rem;
+    font-size: 3.5rem;
+    color:rgba(49, 199, 191, 1);
+    text-align: center;
   }
+
+  /* grid #1 */
+  .holds-video-picture {
+    /* background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y; */
+    width: 100%;
+    height: 100%;
+    grid-row-start: 2;
+  }
+
+  .code-pen {
+    /* background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y; */
+    width: 100%;
+    height: 100%;
+    grid-row-start: 3;
+  }
+
+  .holds-video-picture > img {
+    width: 100%;
+  }
+
+  .code-pen > img {
+    width: 100%;
+  }
+
+ 
+  
+  .project-info {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    grid-row-start: 4;
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .project-info > p {
+    padding: 0;
+    margin: 0;
+    padding-bottom: .75rem;
+    padding-left: .5rem;
+  }
+
+
+  .project-stack {
+    grid-row-start: 5;
+    padding: 1rem;
+  }
+
+  .stack-title {
+    font-size: 1.75rem;
+    padding-bottom: 1rem;
+}
+
+.stack-used {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+

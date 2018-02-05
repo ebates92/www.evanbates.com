@@ -39,12 +39,17 @@
         <div id="top-images"></div>
             <div id="bio">
                 <div id="my-picture"></div>
-                <div class="section-header">Hi, I'm Evan</div>
-                <div id="my-bio">I'm a full-stack web developer in Atlanta, GA. I joined the software community five years ago and fell in love with the fast-paced environment and daily challenges.</div>
-                <br>
-                <div id="my-bio">After mastering operations, I decided that I wanted a better fundamental understanding of how software works.  
-                        This inquiry led me to <a href="https://www.digitalcrafts.com/" target="blank">Digital Crafts</a> - a four month coding immersive. I now hold a breath of leadership and programming skills 
-                        that help turn an idea from a concept into a tangible asset that adds value.</div>
+                <div id="information">
+                    <div class="section-header">Hi, I'm Evan.</div>
+                    <div id="my-bio-box">
+                        <div id="my-bio" class="first">I'm a full-stack web developer in Atlanta, GA. I joined the software community five years ago and fell in love with the fast-paced environment and daily challenges.</div>
+                        <br>
+                        <div id="my-bio" class="second">After mastering operations, I decided that I wanted a better fundamental understanding of how software works.  
+                                This inquiry led me to <a href="https://www.digitalcrafts.com/" target="blank">Digital Crafts</a> - a four month coding immersive. I now hold a breath of leadership and programming skills 
+                                that help turn an idea from a concept into a tangible asset that adds value.</div>
+                    </div>
+                </div>
+
             </div>
         <div class='spacing'></div>
 
@@ -110,6 +115,7 @@
                 {
                     name: 'mySitter',
                     description: "The mySitter Web App connects parents with local babysitters through validated social media profiles and parent ratings.",
+                    additional_description: "Challenges: User authentication (passport) for two different user profiles as each passport only accepts one model. We had to create one single table to hold the user information.",
                     stack_name: ["NodeJS", "JavaScript E6", "PostGreSQL", "Sequelize"],
                     stack: ["nodejs", "javascript", "postgresql", "sequelize"],
                     image: "img/mother-edited-4.jpg",
@@ -118,6 +124,7 @@
                 {
                     name: 'Package Tracker',
                     description: "The Package Tracker Web App allows individuals to submit tracking numbers and recieve real time updates on their package delivery status through Fedex or UPS.",
+                    additional_description: "Challenges: We ran into a lot of duplicate data from both Fedex and UPS where a location would print multiple times for each package status update. We had to refactor the JSON data to scrub this additional data out.",
                     stack_name: ["HTML5", "CSS3", "JavaScript E6", "jQuery"],
                     stack: ["html5", "css3", "javascript", "jquery"],
                     image: "img/package-tracker-2.jpg",
@@ -126,6 +133,7 @@
                 {
                     name: 'Atlanta Homes 30307',
                     description: "Atlanta 30307 allows you to search through homes available in the 30307 zipcode",
+                    additional_description: "Challenges: There are no APIs that provide housing data for free which is why I am using static data for this application.",
                     stack_name: ["HTML5", "CSS3", "JavaScript E6", "jQuery"],
                     stack: ["html5", "css3", "javascript", "jquery"],
                     image: "img/Atlanta-30307.jpg",
@@ -140,6 +148,7 @@
                     super(props);
                     this.state = {
                         currentProjectIndex : -1,
+                        status: "closed"
                     }
                 }
 
@@ -147,22 +156,65 @@
                     let currentProject = null;
                     // will check if a project has been clicked. If so, it will seek out the ProjectPopOut Component
                     if (this.state.currentProjectIndex >= 0) {
-                        currentProject = <ProjectPopOut data={this.props.data} currentProjectIndex= {this.state.currentProjectIndex}/>
+                        currentProject = <ProjectPopOut 
+                            clickRightHandler={this.handleRightScroll}
+                            clickLeftHandler={this.handleLeftScroll}
+                            clickXHandler= {this.handleX} 
+                            data={this.props.data} 
+                            currentProjectIndex={this.state.currentProjectIndex}/>
                     }
 
                     return (
-                        <div>
+                        <div id='all-projects'>
                             {currentProject}
-                            <div className="section-header">Portfolio</div>
+                            <div className="section-header">Applications built.</div>
                             <ProjectCards data={this.props.data} clickHandler={this.handleOnClick}/>
                         </div>
                     )
                 }
 
                 handleOnClick = (id) => {
+                    this.fixBody();
                     this.setState({
                         currentProjectIndex: id,
                     })
+                }
+
+                handleX = () => {
+                    this.unfixBody();
+                    this.setState ({
+                        currentProjectIndex: -1,
+                    })
+                }
+
+                handleRightScroll = (id) => {
+                    let newID = (id+1);
+                    if (newID >= this.props.data.length) {
+                        newID = 0;
+                    }
+                    this.setState ({
+                        currentProjectIndex: newID,
+                    })
+                }
+
+                handleLeftScroll = (id) => {
+                    let newID = (id-1);
+                    if(newID < 0) {
+                        newID = (this.props.data.length-1);
+                    }
+                    this.setState ({
+                        currentProjectIndex: newID,
+                    })
+                }
+
+                unfixBody = () => {
+                    let bodySelect=document.querySelector('body')
+                    bodySelect.classList.remove('fixed')
+                }
+
+                fixBody = () => {
+                    let bodySelect=document.querySelector('body')
+                    bodySelect.classList.add('fixed')
                 }
 
             }
@@ -203,17 +255,49 @@
             const ProjectPopOut = (props) => {
                 let backgroundStyle = {backgroundImage: 'url(' + props.data[props.currentProjectIndex].image + ')'}
                 return (
-                    <div className="pop-out-container">
-                        <div className="video-picture-window">
-                            <div className="holds-video-picture" style={backgroundStyle}></div>
-                            <div className='project-info'>
-                                IM ADDING CONTENT IN HERE SO THAT MAYBE IT WILL DO STUFF.
-                            </div>      
-                        </div>
-                        <div className="clickable picture-x">⨯</div>
-                        <div className="clickable scroll scroll-left">⟪</div>
-                        <div className="clickable scroll scroll-right">⟫</div>
+                    <div className="root">
+                        <div className="pop-out-container">
+                            <div className="video-picture-window">
+                                <div className='application-name'>{props.data[props.currentProjectIndex].name}</div>
+                                <div className="holds-video-picture">
+                                    <img src= {props.data[props.currentProjectIndex].image} />
+                                </div>
+                                <div className="code-pen">
+                                    <img src= {props.data[props.currentProjectIndex].image} />
+                                </div>
+
+                                <div className='project-info'>
+                                    <div className="stack-title">Application Description:</div>
+                                    <p className="p-padding">{props.data[props.currentProjectIndex].description}</p>
+                                    <p>{props.data[props.currentProjectIndex].additional_description}</p>
+                                </div>
+                                <div className="project-stack">
+                                    <div className="stack-title">Main stack used:</div>
+                                    <div className='stack-used'>
+                                        <div className='icon-container'>
+                                            <div className='icon-name'>HTML5</div>
+                                            <i className="devicon-html5-plain"></i>
+                                        </div>
+                                        <div className='icon-container'>
+                                            <div className='icon-name'>CSS3</div>
+                                            <i className="devicon-css3-plain"></i>
+                                        </div>
+                                        <div className='icon-container'>
+                                            <div className='icon-name'>JavaScript ES6</div>
+                                            <i className="devicon-javascript-plain"></i>
+                                        </div>
+                                        <div className='icon-container'>
+                                            <div className='icon-name'>JQuery</div>
+                                            <i className="devicon-jquery-plain"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div className="clickable picture-x" onClick = {() => {props.clickXHandler()}}>⨯</div>
+                        <div className="clickable scroll scroll-left" onClick = {() => {props.clickLeftHandler(props.currentProjectIndex)}}>⟪</div>
+                        <div className="clickable scroll scroll-right" onClick = {() => {props.clickRightHandler(props.currentProjectIndex)}}>⟫</div>
                     </div>
+                </div>
                 )
             }
 
@@ -243,29 +327,6 @@
         <div class='background_faded'></div>
         <!-- <div class='background_faded'></div> -->
     </div>
-
-        <!-- SAVING TO USE LATER -->
-                <!-- <div class="project-stack">
-                    <div class="stack-title">Main stack used:</div>
-                    <div class='stack-used'>
-                        <div class='icon-container'>
-                            <div class='icon-name'>HTML5</div>
-                            <i class="devicon-html5-plain"></i>
-                        </div>
-                        <div class='icon-container'>
-                            <div class='icon-name'>CSS3</div>
-                            <i class="devicon-css3-plain"></i>
-                        </div>
-                        <div class='icon-container'>
-                            <div class='icon-name'>JavaScript ES6</div>
-                            <i class="devicon-javascript-plain"></i>
-                        </div>
-                        <div class='icon-container'>
-                            <div class='icon-name'>JQuery</div>
-                            <i class="devicon-jquery-plain"></i>
-                        </div>
-                    </div>
-                </div> -->
 
 </body>
 </html>
